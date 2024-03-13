@@ -1,9 +1,7 @@
 package br.com.ifpe.oxefood.api.entregador;
 
-import br.com.ifpe.oxefood.api.produto.ProdutoRequest;
 import br.com.ifpe.oxefood.modelo.entregador.Entregador;
 import br.com.ifpe.oxefood.modelo.entregador.EntregadorService;
-import br.com.ifpe.oxefood.modelo.produto.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
