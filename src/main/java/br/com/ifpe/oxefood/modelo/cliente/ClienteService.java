@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -20,6 +22,20 @@ public class ClienteService {
         cliente.setVersao(1L);
         cliente.setDataCriacao(LocalDate.now());
         return repository.save(cliente);
+    }
+
+    public List<Cliente> listarTodos() {
+
+        return repository.findAll();
+    }
+
+    public Cliente obterPorID(Long id) {
+
+        Optional<Cliente> cliente = repository.findById(id);
+
+        return cliente.orElse(null);
+
+
     }
 
 }
