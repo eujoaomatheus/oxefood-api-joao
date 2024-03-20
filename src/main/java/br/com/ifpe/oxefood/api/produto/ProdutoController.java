@@ -33,14 +33,11 @@ public class ProdutoController {
 
         Produto produto = service.obterPorID(id);
 
-        if (produto != null) {
-
-            return new ResponseEntity<>(produto,HttpStatus.OK);
-        } else {
-
+        if (produto == null)
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
 
+
+        return new ResponseEntity<>(produto,HttpStatus.OK);
 
     }
 

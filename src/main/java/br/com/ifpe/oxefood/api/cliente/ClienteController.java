@@ -29,17 +29,14 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> obterPorID(@PathVariable Long id) {
+    public ResponseEntity<Object> obterPorID(@PathVariable Long id) {
 
         Cliente cliente = clienteService.obterPorID(id);
 
-        if (cliente != null) {
-            return new ResponseEntity<>(cliente, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+        if (cliente == null)
+            return new ResponseEntity<>("Não encontrado", HttpStatus.NOT_FOUND);
 
-
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
 
     }
 
