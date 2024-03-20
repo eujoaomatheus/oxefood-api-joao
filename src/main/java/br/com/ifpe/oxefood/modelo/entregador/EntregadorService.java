@@ -16,7 +16,7 @@ public class EntregadorService {
 
     @Transactional
     public Entregador save(Entregador entregador) {
-        entregador.setHabilitado(Boolean.TRUE);
+        entregador.setAtivo(Boolean.TRUE);
         entregador.setVersao(1L);
         entregador.setDataCriacao(LocalDate.now());
         return repository.save(entregador);

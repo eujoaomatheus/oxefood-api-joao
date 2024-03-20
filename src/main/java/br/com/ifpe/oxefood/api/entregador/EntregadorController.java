@@ -35,6 +35,7 @@ public class EntregadorController {
             return new ResponseEntity<>("Não existe: ", HttpStatus.NOT_FOUND);
 
 
+
         return new ResponseEntity<>(entregador, HttpStatus.OK);
     }
 

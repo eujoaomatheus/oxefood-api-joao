@@ -42,7 +42,6 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
-
         Cliente cliente = clienteService.save(request.build());
         System.out.printf(request.build().toString());
         return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
