@@ -42,5 +42,18 @@ public class ClienteService {
        cliente.setFoneFixo(clienteAlterado.getFoneFixo());
        cliente.setVersao(cliente.getVersao() + 1);
        repository.save(cliente);
-   } 
+   }
+
+
+    @Transactional
+    public void delete(Long id) {
+
+        Cliente cliente = repository.findById(id).get();
+        cliente.setHabilitado(Boolean.FALSE);
+        cliente.setVersao(cliente.getVersao() + 1);
+
+        repository.save(cliente);
+    }
+
+
 }
