@@ -5,33 +5,51 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
+
+import java.time.LocalDate;
+
 import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Table(name = "Entregador")
 @SQLRestriction("habilitado = true")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Entregador extends EntidadeAuditavel {
 
     @Column
+    private String nome;
+    @Column
+    private String cpf;
+    @Column
+    private String rg;
+    @Column
+    private LocalDate dataNascimento;
+    @Column
+    private String foneCelular;
+    @Column
+    private String foneFixo;
+    @Column
+    private Integer qtdEntregasRealizadas;
+    @Column
     private Double valorFrete;
     @Column
-    private String enderecoRua;
+    private String Rua;
     @Column
-    private String endercoNumero;
+    private String NumeroRua;
     @Column
-    private String enderecoBairro;
+    private String Bairro;
     @Column
-    private String enderecoCidade;
+    private String Cidade;
     @Column
-    private String enderecoCep;
+    private String Cep;
     @Column
-    private String enderecoUf;
+    private String Uf;
     @Column
-    private String enderecoComplemento;
+    private String Complemento;
     @Column
     private Boolean ativo;
 

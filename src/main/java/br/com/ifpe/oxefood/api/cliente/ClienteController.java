@@ -1,50 +1,48 @@
 package br.com.ifpe.oxefood.api.cliente;
 
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
-import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+import br.com.ifpe.oxefood.modelo.cliente.ClienteService;
 
 @RestController
 @RequestMapping("/api/cliente")
 @CrossOrigin
 public class ClienteController {
 
-    @Autowired
-    private ClienteService clienteService;
+   @Autowired
+   private ClienteService clienteService;
 
+   @PostMapping
+   public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
 
+       Cliente cliente = clienteService.save(request.build());
+       return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+   }
     @GetMapping
-    public ResponseEntity<List<Cliente>> listarTodos() {
-
-        List<Cliente> clientes = clienteService.listarTodos();
-
-        return new ResponseEntity<>(clientes, HttpStatus.OK);
-
+    public List<Cliente> listarTodos() {
+        return clienteService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> obterPorID(@PathVariable Long id) {
-
-        Cliente cliente = clienteService.obterPorID(id);
-
-        if (cliente == null)
-            return new ResponseEntity<>("Não encontrado", HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
-
+    public Cliente obterPorID(@PathVariable Long id) {
+        return clienteService.obterPorID(id);
     }
+    @PutMapping("/{id}")
+ public ResponseEntity<Cliente> update(@PathVariable("id") Long id, @RequestBody ClienteRequest request) {
 
-    @PostMapping
-    public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
-        Cliente cliente = clienteService.save(request.build());
-        System.out.printf(request.build().toString());
-        return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
-    }
+       clienteService.update(id, request.build());
+       return ResponseEntity.ok().build();
+ }
+
 }
-

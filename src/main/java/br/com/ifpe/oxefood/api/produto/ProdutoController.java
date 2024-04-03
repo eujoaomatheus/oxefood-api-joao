@@ -1,14 +1,15 @@
 package br.com.ifpe.oxefood.api.produto;
 
-import br.com.ifpe.oxefood.modelo.cliente.Cliente;
+
 import br.com.ifpe.oxefood.modelo.produto.Produto;
 import br.com.ifpe.oxefood.modelo.produto.ProdutoService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -16,39 +17,28 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService service;
-
-    @GetMapping
-    public ResponseEntity<List<Produto>> listarTodos() {
-
-        List<Produto> produtos = service.listarTodos();
-
-        return new ResponseEntity<>(produtos, HttpStatus.OK);
-    }
-
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Produto> obterPorID(@PathVariable  Long id) {
-
-        Produto produto = service.obterPorID(id);
-
-        if (produto == null)
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
-
-
-        return new ResponseEntity<>(produto,HttpStatus.OK);
-
-    }
-
+    private ProdutoService produtoService;
 
     @PostMapping
     public ResponseEntity<Produto> save (@RequestBody ProdutoRequest request) {
 
-        Produto produto = service.save(request.build());
+        Produto produto = produtoService.save(request.build());
 
         return new ResponseEntity<Produto>(produto, HttpStatus.CREATED);
     }
+    @GetMapping
+    public List<Produto> listarTodos() {
+        return produtoService.listarTodos();
+    }
 
+    @GetMapping("/{id}")
+    public Produto obterPorID(@PathVariable Long id) {
+        return produtoService.obterPorID(id);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody ProdutoRequest request) {
+
+    produtoService.update(id, request.build());
+    return ResponseEntity.ok().build();
+ }
 }

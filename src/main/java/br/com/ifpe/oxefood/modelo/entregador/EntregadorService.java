@@ -4,9 +4,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EntregadorService {
@@ -16,23 +16,39 @@ public class EntregadorService {
 
     @Transactional
     public Entregador save(Entregador entregador) {
-        entregador.setAtivo(Boolean.TRUE);
+
+        entregador.setHabilitado(Boolean.TRUE);
         entregador.setVersao(1L);
         entregador.setDataCriacao(LocalDate.now());
         return repository.save(entregador);
     }
-
     public List<Entregador> listarTodos() {
 
-        List<Entregador> entregadores = repository.findAll();
-
-        return entregadores;
+    return repository.findAll();
     }
 
     public Entregador obterPorID(Long id) {
 
-        Optional<Entregador> entregador = repository.findById(id);
+    return repository.findById(id).get();
+    }
+    @Transactional
+    public void update(long id, Entregador entregadorAlterado){
 
-        return entregador.orElse(null);
+        Entregador entregador = repository.findById(id).get();
+        entregador.setNome(entregadorAlterado.getNome());
+        entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
+        entregador.setAtivo(entregadorAlterado.getAtivo());
+        entregador.setCpf(entregadorAlterado.getCpf());
+        entregador.setFoneCelular(entregadorAlterado.getFoneCelular());
+        entregador.setFoneFixo(entregadorAlterado.getFoneFixo());
+        entregador.setVersao(entregador.getVersao() + 1);
+        entregador.setNome(entregadorAlterado.getNome());
+        entregador.setCpf(entregadorAlterado.getCpf());
+        entregador.setRg(entregadorAlterado.getRg());
+        entregador.setDataNascimento(entregadorAlterado.getDataNascimento());
+        entregador.setFoneCelular(entregadorAlterado.getFoneCelular());
+        entregador.setFoneFixo(entregadorAlterado.getFoneFixo());
+        entregador.setQtdEntregasRealizadas(entregadorAlterado.getQtdEntregasRealizadas());
+        repository.save(entregador);
     }
 }

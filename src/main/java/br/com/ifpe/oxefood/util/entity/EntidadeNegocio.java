@@ -9,24 +9,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(of = { "id" })
 @MappedSuperclass
 public abstract class EntidadeNegocio implements Serializable {
+  
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-    @JsonIgnore
-    @Column
-    private Boolean habilitado;
-
+   @JsonIgnore
+   @Column
+   private Boolean habilitado;
+  
 }
-

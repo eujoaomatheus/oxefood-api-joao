@@ -1,2 +1,3 @@
-# oxefood-api-joao
-Projeto realizada para a disciplina de WEB 4
+# oxefood-api-carlos
+
+comando subir o docker docker-compose up -d

@@ -38,4 +38,3 @@ public class Cliente extends EntidadeAuditavel  {
     private String foneFixo;
 
 }
-
