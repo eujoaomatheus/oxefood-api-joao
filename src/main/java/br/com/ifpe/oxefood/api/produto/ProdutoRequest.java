@@ -22,9 +22,21 @@ public class ProdutoRequest {
     @NotBlank(message = "O Titulo é de preenchimento obrigatório")
     private String titulo;
     private String descricao;
+
+    @NotNull(message = "O Valor Unitario é de preenchimento obrigatório")
+    @NotBlank(message = "O Unitario é de preenchimento obrigatório")
     private Double valorUnitario;
+
+    @NotNull(message = "O Tempo de Enetrega Minino é de preenchimento obrigatório")
+    @NotBlank(message = "O Tempo de Enetrega Minino é de preenchimento obrigatório")
     private Integer tempoEntregaMinimo;
+
+    @NotNull(message = "O Tempo de Enetrega Máximo é de preenchimento obrigatório")
+    @NotBlank(message = "O Tempo de Enetrega Máximo é de preenchimento obrigatório")
     private Integer tempoEntregaMaximo;
+
+    @NotNull(message = "O ID da Categoria é de preenchimento obrigatório")
+    @NotBlank(message = "O ID da Categoria é de preenchimento obrigatório")
     private Long idCategoria;
 
     public Produto build() {

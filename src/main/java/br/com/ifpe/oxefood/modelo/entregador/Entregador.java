@@ -28,7 +28,7 @@ public class Entregador extends EntidadeAuditavel {
     private String rg;
     @Column
     private LocalDate dataNascimento;
-    @Column
+    @Column(unique = true)
     private String foneCelular;
     @Column
     private String foneFixo;

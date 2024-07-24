@@ -19,13 +19,13 @@ import org.hibernate.annotations.SQLRestriction;
 @NoArgsConstructor
 public class Produto extends EntidadeAuditavel {
 
-    @Column
+    @Column(unique = true)
     private String codigo;
     @Column
     private String titulo;
     @Column
     private String descricao;
-    @Column
+    @Column(nullable = false)
     private Double valorUnitario;
     @Column
     private Integer tempoEntregaMinimo;

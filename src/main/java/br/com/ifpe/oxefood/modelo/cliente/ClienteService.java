@@ -69,7 +69,6 @@ public class ClienteService {
        repository.save(cliente);
    }
 
-   //ENDEREÇO CLIENTE
 
     @Transactional
     public EnderecoCliente adicionarEnderecoCliente(Long clienteId, EnderecoCliente endereco) {

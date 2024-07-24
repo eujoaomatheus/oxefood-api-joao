@@ -1,5 +1,6 @@
 package br.com.ifpe.oxefood.modelo.produto;
 
+import br.com.ifpe.oxefood.util.entity.exception.ProdutoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,11 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public Produto save(Produto produto) {
+
+        if (produto.getValorUnitario() < 10) {
+            throw new ProdutoException(ProdutoException.MSG_VALOR_MINIMO_PRODUTO);
+        }
+
 
         produto.setHabilitado(Boolean.TRUE);
         produto.setVersao(1L);
