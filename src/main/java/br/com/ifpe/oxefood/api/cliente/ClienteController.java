@@ -24,7 +24,8 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/api/cliente")
 @CrossOrigin
 public class ClienteController {
-    /* http://localhost:8080/swagger-ui/index.html */
+
+
    @Autowired
    private ClienteService clienteService;
    @Operation(
@@ -32,7 +33,7 @@ public class ClienteController {
     description = "Um endpoint responsável por inserir um cliente no sistema."
 )
    @PostMapping
-   public ResponseEntity<Cliente> save(@RequestBody ClienteRequest request) {
+   public ResponseEntity<Cliente> save(@RequestBody @Valid  ClienteRequest request) {
 
        Cliente cliente = clienteService.save(request.build());
        return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);

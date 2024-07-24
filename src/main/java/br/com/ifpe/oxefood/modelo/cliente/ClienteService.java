@@ -3,11 +3,13 @@ package br.com.ifpe.oxefood.modelo.cliente;
 import br.com.ifpe.oxefood.modelo.categoria_produto.CategoriaProduto;
 import br.com.ifpe.oxefood.modelo.endereco.EnderecoCliente;
 import br.com.ifpe.oxefood.modelo.endereco.EnderecoClienteRepository;
+import br.com.ifpe.oxefood.util.entity.exception.EntidadeNaoEncontradaException;
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,14 @@ public class ClienteService {
 
     public Cliente obterPorID(Long id) {
 
-    return repository.findById(id).get();
+    Optional<Cliente> cliente = repository.findById(id);
+
+    if(cliente.isPresent()) {
+        return cliente.get();
+    } else {
+        throw new EntidadeNaoEncontradaException("Cliente", id);
+    }
+
     }
     @Transactional
     public void update(Long id, Cliente clienteAlterado) {
