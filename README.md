@@ -1,3 +1,3 @@
 # oxefood-api-joao
 
-## Para subir utilize: docker-compse up -d
+comando subir o docker docker-compose up -d
