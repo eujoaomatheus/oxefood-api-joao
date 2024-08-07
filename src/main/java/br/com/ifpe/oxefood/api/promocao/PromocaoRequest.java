@@ -18,29 +18,54 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PromocaoRequest {
 
-    @NotNull(message = "O Titulo é de preenchimento obrigatório")
-    @NotBlank(message = "O Titulo é de preenchimento obrigatório")
+
+    @NotNull(message = "O titulo é de preenchimento obrigatório")
+    @NotBlank(message = "O titulo é de preenchimento obrigatório")
     private String titulo;
 
+    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataInicio;
+
+    
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFim;
 
-    @NotNull(message = "A Regra é de preenchimento obrigatório")
+
+    @NotNull(message = "A regra é de preenchimento obrigatório")
     @NotBlank(message = "A Regra é de preenchimento obrigatório")
     private String regra;
-    private Double valorDesconto;
+
+    @NotNull(message = "O valor de desconto é de preenchimento obrigatório")
+    @NotBlank(message = "O valor de desconto é de preenchimento obrigatório")
+    private String valorDesconto;
+
+
 
     public Promocao build(){
-        
         return Promocao.builder()
-            .titulo(titulo)
-            .dataInicio(dataInicio)
-            .dataFim(dataFim)
-            .regra(regra)
-            .valorDesconto(valorDesconto)
-            .build();
-
+        .titulo(titulo)
+        .dataInicio(dataInicio)
+        .dataFim(dataFim)
+        .regra(regra)
+        .valorDesconto(setMoney())
+        .build();
     }
-} 
+
+    private Double setMoney(){
+
+        
+        if(valorDesconto!=null){
+            String desconto = valorDesconto.replace(",", ".");
+            return Double.parseDouble(desconto);
+        }
+
+        return 0.0;
+    }
+
+
+
+
+
+    
+}

@@ -1,14 +1,18 @@
 package br.com.ifpe.oxefood.modelo.entregador;
 
+import java.time.LocalDate;
+
+import org.hibernate.annotations.SQLRestriction;
+
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
-
-import java.time.LocalDate;
-
-import org.hibernate.annotations.SQLRestriction;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "Entregador")
@@ -18,39 +22,54 @@ import org.hibernate.annotations.SQLRestriction;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Entregador extends EntidadeAuditavel {
-
-    @Column
+public class Entregador extends EntidadeAuditavel{
+    
+    @Column(nullable = false)
     private String nome;
-    @Column(unique = true)
+
+    @Column(nullable = false)
     private String cpf;
-    @Column(unique = true)
+
+    @Column(nullable = false)
     private String rg;
-    @Column
+
+    @Column(nullable = false)
     private LocalDate dataNascimento;
-    @Column(unique = true)
+
+    @Column(nullable = false)
     private String foneCelular;
-    @Column
+
+    @Column(nullable = false)
     private String foneFixo;
-    @Column
+
+    @Column(nullable = false)
     private Integer qtdEntregasRealizadas;
-    @Column
+
+    @Column(nullable = false)
     private Double valorFrete;
-    @Column
-    private String Rua;
-    @Column
-    private String NumeroRua;
-    @Column
-    private String Bairro;
-    @Column
-    private String Cidade;
-    @Column
-    private String Cep;
-    @Column
-    private String Uf;
-    @Column
-    private String Complemento;
-    @Column
+
+    @Column(nullable = false)
+    private String enderecoRua;
+
+    @Column(nullable = false)
+    private String enderecoNumero;
+
+    @Column(nullable = false)
+    private String enderecoBairro;
+
+    @Column(nullable = false)
+    private String enderecoCidade;
+
+    @Column(nullable = false)
+    private String enderecoCep;
+
+    @Column(nullable = false)
+    private String enderecoUf;
+
+    @Column(nullable = false)
+    private String enderecoComplemento;
+
+    @Column(nullable = false)
     private Boolean ativo;
 
 
